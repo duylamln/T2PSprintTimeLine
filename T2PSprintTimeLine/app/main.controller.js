@@ -19,7 +19,8 @@
         });
     }
 
-    function buildSprintActivities(currentSprint) {
+    function buildSprintActivities(currentSprint, appValues) {
+        var activityDefine = appValues.sprintActivityDefine;
         var sprintDays = [];
         var start = moment(currentSprint.from);
         while (start <= currentSprint.to) {
@@ -27,11 +28,17 @@
             start = moment(start).add(1, "days");
         }
 
-        return _.map(sprintDays, function(item) {
+        return _.map(sprintDays, function (item) {
+            var week = currentSprint.from <= item && item <= currentSprint.endWeek1 ? 1 : 2;
+            var weekDay = moment(item).day();
+            var content = _.find(activityDefine, function (activity) {
+                return activity.week === week && activity.day.indexOf(weekDay) > -1;
+
+            }).content;
             return {
                 date: item,
                 title: item.format("DD/MM"),
-                content: "Lorem ipsum dolor sit amet"
+                content: content
             }
         });
     }

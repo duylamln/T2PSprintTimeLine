@@ -14,7 +14,7 @@
 
 		function link(scope, element, attr) {
 			var events = buildRoadmapEvents(scope.activities);
-			$("#time-line").roadmap(events);
+			$("#time-line").roadmap(events, { eventsPerSlide: 10 });
 		}
 
 		function buildRoadmapEvents(activities) {

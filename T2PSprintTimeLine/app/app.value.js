@@ -26,6 +26,7 @@
         var sprintActivityDefine = [
             {
                 day: [1, 2, 3, 4, 5],
+                week: 1,
                 content: "Work for this sprint"
             },
             {
@@ -46,21 +47,26 @@
         ];
 
         return {
-            sprintDefine: sprintDefine
+            sprintDefine: sprintDefine,
+            sprintActivityDefine: sprintActivityDefine
         }
     }
 
     function buildSprintDates(deliveryDates) {
         return _.map(deliveryDates, function (item) {
             var momentDate = moment(item);
-            var start = moment(item).subtract(2, "weeks").startOf("week").add(1, "days");
-            var end = moment(item).subtract(1, "weeks").endOf("week").subtract(1, "days");
+            var start = moment(item).subtract(2, "weeks").startOf("week").add(1, "days"); //Monday
+            var endWeek1 = moment(start).add(4, "days");
+            var end = moment(item).subtract(1, "weeks").endOf("week").subtract(1, "days"); //Friday
+            var startWeek2 = moment(endWeek1).add(3, "days");
 
             return {
                 title: momentDate.format("YYYYMMDD"),
                 date: item,
                 from: start,
-                to: end
+                to: end,
+                endWeek1: endWeek1,
+                startWeek2: startWeek2
             }
         });
     }
