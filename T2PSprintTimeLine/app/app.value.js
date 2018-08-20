@@ -11,7 +11,11 @@
             new Date(2018, 08, 19),
             new Date(2018, 09, 03),
             new Date(2018, 09, 17),
-            new Date(2018, 09, 31)
+            new Date(2018, 09, 31),
+            new Date(2018, 10, 14),
+            new Date(2018, 10, 28),
+            new Date(2018, 11, 12),
+            new Date(2018, 11, 26)
         ];
 
 
@@ -25,33 +29,54 @@
          */
         var sprintActivityDefine = [
             {
-                day: [1, 2, 3, 4, 5],
+                day: [1, 2],
                 week: 1,
-                content: "Work for this sprint"
+                content: "<span class=''>Work for this sprint</span>"
             },
             {
-                day: [1, 2, 3],
+                day: [3],
+                week: 1,
+                content: "<span class=''>Work for this sprint</span></br><span class='text-danger'>Deploy Production</span>"
+            },
+            {
+                day: [4, 5],
+                week: 1,
+                content: "<span class=''>Work for this sprint</span>"
+            },
+            {
+                day: [1, 2],
                 week: 2,
-                content: "Work for sprint {0}"
+                content: "<span class=''>Work for <strong>next sprint</strong></span>"
             },
             {
                 day: [3],
                 week: 2,
-                content: "Planning for print {0}"
+                content: "<span class='text-primary'>Planning for next 2 sprints</span></br>Work for <strong>next sprint</strong>"
             },
             {
                 day: [4, 5],
                 week: 2,
-                content: "Fix bug this sprint"
+                content: "<span class='text-danger'>Fix bug for this sprint</span>"
             }
         ];
 
         return {
             sprintDefine: sprintDefine,
-            sprintActivityDefine: sprintActivityDefine
+            sprintActivityDefine: sprintActivityDefine,
+            deliveryDates: deliveryDates
         }
     }
 
+    /*
+    sprint: {
+        title: "20180822",
+        date: 2018-08-22,
+        from: "2018-08-06",
+        to: "2018-08-17",
+        endWeek1: "2018-08-10",
+        startWeek2: "2018-08-13"
+    }
+     */
     function buildSprintDates(deliveryDates) {
         return _.map(deliveryDates, function (item) {
             var momentDate = moment(item);

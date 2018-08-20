@@ -43,7 +43,7 @@
 		var settings = $.extend({}, defaults, opts);
 
 		var buildEvent = function (event, key) {
-			var html = '<li class="' + settings.rootClass + '__events__event">' + settings.eventTemplate + '</li>';
+			var html = '<li class="' + settings.rootClass + '__events__event ' + (event.active === true ? 'active' : '') + '">' + settings.eventTemplate + '</li>';
 			html = html.replace('####DATE###', event.date);
 			html = html.replace('####CONTENT###', event.content);
 
